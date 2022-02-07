@@ -1,1 +1,67 @@
+ gcc -g p1original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x83a: file p1original.c, line 23.
+(gdb) r
+Starting program: /home/runner/ppa-IA2-practice2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p1original.c:23
+23  {
+(gdb) n
+25    input(&b,&h);
+(gdb) s
+input (b=0x7ffe56aeac9c, h=0x7ffe56aeaca0) at p1original.c:6
+6     printf("Enter the base of the triangle\n");
+(gdb) n
+Enter the base of the triangle
+7     scanf("%f", b);
+(gdb) n
+5
+8     printf("Enter the height of the triangle\n");
+(gdb) n
+Enter the height of the triangle
+9     scanf("%f", h);
+(gdb) n
+7
+10  }
+(gdb) n
+main () at p1original.c:26
+26    find_area(b,h,&area);
+(gdb) s
+find_area (b=5, h=7, area=0x7ffe56aeaca4) at p1original.c:14
+14    *area= (b*h)/2;
+(gdb) s
+15  }
+(gdb) n
+main () at p1original.c:27
+27    output(b,h,area);
+(gdb) s
+output (b=5, h=7, area=17.5) at p1original.c:19
+19    printf(" The area of triangle with base %f and height %f is %f\n",b,h,area);
+(gdb) n
+ The area of triangle with base 5.000000 and height 7.000000 is 17.500000
+20  }
+(gdb) n
+main () at p1original.c:28
+28    return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 31) exited normally]
+(gdb) q
+ 
